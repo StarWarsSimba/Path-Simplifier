@@ -42,22 +42,25 @@ def summarize(points: list[tuple[float, float]],
 
     def simplify(start: int, end: int):
         """Add necessary points in (start, end) to summary."""
-        log.debug(f"Simplifying from {start}: {points[start]} to {end}: {points[end]}, {points[start + 1:end]}")
+        #log.debug(f"Simplifying from {start}: {points[start]} to {end}: {points[end]}, {points[start + 1:end]}")
         log.debug(f"Summary so far: {summary}")
         map_view.scratch(points[start], points[end])
         p = (0, 0)
         p_index = 0
         max_distance = 0
-        for i in range(start, end):
-            distance = geometry.deviation_sq(points[0], points[-1], points[i])
-            if distance > tolerance:
+        for i in range(start + 1, end):
+            distance = geometry.deviation_sq(points[start], points[end], points[i])
+            if distance > epsilon:
                 if distance > max_distance:
                     max_distance = distance
                     p = points[i]
                     p_index = i
-        summary.append(p)
-        simplify(start, p_index)
-        simplify(p_index, end)
+            #summary.append(p)
+        if max_distance > 0:
+            simplify(start, p_index)
+            simplify(p_index, end)
+        else:
+            summary.append(points[end])
         return
 
     simplify(0, len(points) - 1)
