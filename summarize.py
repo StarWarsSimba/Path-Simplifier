@@ -31,11 +31,11 @@ def summarize(points: list[tuple[float, float]],
               tolerance: int = config.TOLERANCE_METERS,
               ) -> list[tuple[float, float]]:
     """
-    #>>> path = [(0, 0), (1, 1), (2, 2), (2, 3), (2, 4), (3, 4), (4, 4)]
-    #>>> expect = [(0, 0), (2, 2), (2, 4), (4, 4)]
-    #>>> simple = summarize(path, tolerance=0.5)
-    #>>> simple == expect
-    #True
+    >>> path = [(0, 0), (1, 1), (2, 2), (2, 3), (2, 4), (3, 4), (4, 4)]
+    >>> expect = [(0, 0), (2, 2), (2, 4), (4, 4)]
+    >>> simple = summarize(path, tolerance=0.5)
+    >>> simple == expect
+    True
     """
     summary: list[tuple[float, float]] = [points[0]]
     epsilon = float(tolerance * tolerance)
