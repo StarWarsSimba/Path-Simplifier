@@ -1,6 +1,6 @@
 """Summarize a path in a map, using the standard Ramer-Douglas-Peucher (aka Duda-Hart)
 split-and-merge algorithm.
-Author: Your name here
+Author: Miles Gurney
 Credits: TBD
 """
 
